@@ -8,8 +8,12 @@ cursor = conn.cursor()
 
 def popular_articles()
     cursor.execute(
-
+        SELECT articles.title, COUNT(log.ip)
+        FROM articles
+        JOIN log ON log.path LIKE CONCAT('%', articles.slug, '%')
+        GROUP BY title ORDER BY COUNT DESC LIMIT 3;
     )
+    return
 
 def popular_authors()
     cursor.execute(
@@ -18,5 +22,5 @@ def popular_authors()
 
 def high_errors()
     cursor.execute(
-    
+
     )
