@@ -56,8 +56,8 @@ def high_errors():
     )
     objective3 = cursor.fetchall()
     for x in objective3:
-        print("\n Most Errors In a Single Day: \n \n" + str(x[0]) + " -- "
-              + str(x[1]) + " errors")
+        print("\n Most Errors In a Single Day: \n \n" + str(x[0]) +
+              " -- " + str(x[1]) + " errors")
     return objective3
 
 popular_articles()
