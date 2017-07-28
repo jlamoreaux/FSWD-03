@@ -45,6 +45,6 @@ def high_errors():
         LIMIT 1;
     )
 
-popular_articles()
-popular_authors()
-high_errors()
+print(popular_articles())
+print(popular_authors())
+print(high_errors())
