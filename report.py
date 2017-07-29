@@ -4,6 +4,16 @@ import psycopg2
 
 
 def connect(db_name="news"):
+    """Creates and returns a connection to specified database,
+    as well as a cursor for the database.
+
+    Args:
+        db_name: (optional string) the name of the databse to connect to.
+                 Set to 'news' by default.
+    Returns:
+        db: a connection to the database.
+        c: a cursor for the database."""
+
     try:
         db = psycopg2.connect("dbname={}".format("news"))
         c = db.cursor()
@@ -14,6 +24,17 @@ def connect(db_name="news"):
 
 
 def get_query_results(query):
+    """Connects to database, executes query, fetches results and closes
+    connection to database.
+
+    Args:
+        query: a string written in SQL to access information in the
+        database
+
+    Returns:
+        results: a list of tuples containing the fetched information
+        from the database."""
+
     db, c = connect()
     c.execute(query)
     results = c.fetchall()
@@ -22,6 +43,8 @@ def get_query_results(query):
 
 
 def print_top_articles():
+    """Prints the top 3 articles from the news table."""
+
     output = get_query_results(
         '''SELECT articles.title, COUNT(log.ip)
         FROM articles
@@ -37,6 +60,9 @@ def print_top_articles():
 
 
 def print_top_authors():
+    """Prints a sorted list of the names of the authors in order of
+    popularity and their total number of views."""
+
     output = get_query_results(
         '''SELECT authors.name, COUNT(popular.ip)
         FROM authors
@@ -53,9 +79,13 @@ def print_top_authors():
 
 
 def print_top_error_days():
+    """Prints a sorted list of the days where more than 1 percent of HTTP
+    requests lead to errors."""
+
     output = get_query_results(
         '''SELECT DATE(time) AS ForDate,
-           ROUND(COUNT(status)*100/SUM(COUNT(status)) OVER(), 2) AS Percentage
+           ROUND(COUNT(status)*100/SUM(COUNT(status)) OVER(), 2) AS
+           Percentage
         FROM log WHERE status != '200 OK'
         GROUP BY ForDate
         ORDER BY Percentage DESC
