@@ -46,12 +46,12 @@ def print_top_articles():
     """Prints the top 3 articles from the news table."""
 
     output = get_query_results(
-        '''SELECT articles.title, COUNT(log.ip)
+        '''SELECT articles.title, COUNT(path) AS views
         FROM articles
-        JOIN log ON log.path
-        LIKE CONCAT('%', articles.slug, '%')
+        JOIN log
+        ON log.path=CONCAT('/article/', articles.slug)
         GROUP BY title
-        ORDER BY COUNT DESC
+        ORDER BY views DESC
         LIMIT 3;'''
     )
     print("\nMost Popular Articles: \n")
