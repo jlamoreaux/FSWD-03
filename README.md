@@ -22,4 +22,4 @@ and execute the following command:
 The following results will be returned from the database:
 - Most Popular Articles
 - Popularity of Authors
-- Day With Highest Error Rate
+- Days With HTTP Error Rates Over 1%
