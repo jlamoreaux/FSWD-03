@@ -55,8 +55,8 @@ def print_top_articles():
         LIMIT 3;'''
     )
     print("\nMost Popular Articles: \n")
-    for x in output:
-        print(str(x[0]) + " -- " + str(x[1]) + " views")
+    for title, views in output:
+        print("\"{}\" -- {} views".format(title, views))
 
 
 def print_top_authors():
@@ -74,8 +74,8 @@ def print_top_authors():
         ORDER BY views DESC;'''
     )
     print("\nPopularity of Authors: \n")
-    for x in output:
-        print(str(x[0]) + " -- " + str(x[1]) + " views")
+    for author, views in output:
+        print("\"{}\" -- {} views".format(author, views))
 
 
 def print_top_error_days():
