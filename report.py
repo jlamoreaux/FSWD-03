@@ -64,14 +64,14 @@ def print_top_authors():
     popularity and their total number of views."""
 
     output = get_query_results(
-        '''SELECT authors.name, COUNT(popular.ip)
+        '''SELECT authors.name, COUNT(*) AS views
         FROM authors
-        JOIN(SELECT articles.title, articles.author, log.ip FROM articles
-             JOIN log ON log.path LIKE CONCAT('%', articles.slug, '%'))
+        JOIN(SELECT articles.title, articles.author FROM articles
+             JOIN log ON log.path LIKE CONCAT('/article/', articles.slug))
         AS popular
         ON authors.id=popular.author
         GROUP BY name
-        ORDER BY COUNT DESC;'''
+        ORDER BY views DESC;'''
     )
     print("\nPopularity of Authors: \n")
     for x in output:
