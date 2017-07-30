@@ -1,7 +1,13 @@
 # Log Analysis
 
-Log Analysis retrieves the data regarding popular authors and articles on a webpage.
-It also gathers the error percentage and date for the date with the most HTTP errors.
+Log Analysis is a Python script that queries a PostgreSQL database using the psycopg2 library.
+The database is a mock database for a fictional news website. The script accesses three
+different tables to return the data listed below under **Running the Program**.
+
+## Requirements
+- Python 3.5.2
+- PostgreSQL 9.5.7
+- psycopg 2.7.3
 
 ## Usage
 
@@ -11,7 +17,7 @@ You must have the newsdata.sql file imported to PostgreSQL for this program to w
 
 To run the program using a command prompt, navigate to the folder holding this file
 and execute the following command:
-`python report.py`
+`python3 report.py`
 
 The following results will be returned from the database:
 - Most Popular Articles
