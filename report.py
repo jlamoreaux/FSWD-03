@@ -83,17 +83,13 @@ def print_top_error_days():
     requests lead to errors."""
 
     output = get_query_results(
-        '''SELECT DATE(time) AS ForDate,
-           ROUND(COUNT(status)*100/SUM(COUNT(status)) OVER(), 2) AS
-           Percentage
-        FROM log WHERE status != '200 OK'
-        GROUP BY ForDate
-        ORDER BY Percentage DESC
-        LIMIT 1;'''
+        '''SELECT date, ROUND(fail*100/total, 2) AS percentage
+        FROM errors WHERE (fail*100/total) > 1
+        ORDER BY percentage DESC;'''
     )
-    for x in output:
-        print("\nDay With Highest Error Rate:\n\n" + str(x[0]) +
-              " -- " + str(x[1]) + "%")
+    print("\nDays With HTTP Error Rates Over 1%: \n")
+    for date, rate in output:
+        print("\"{}\" -- {}%".format(date, rate))
 
 
 if __name__ == '__main__':
