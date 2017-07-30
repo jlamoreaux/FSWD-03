@@ -19,7 +19,7 @@ It may take a minute or two to complete the import
 Once the database has been loaded, you need to create a view, `errors` for the python script to access.
 You can do so my executing the following:
 
-`$ psql` (Opens PostgreSQL)
+`$ psql news` (Opens PostgreSQL and connects to the database)
 
 `=>CREATE VIEW "errors" AS
 SELECT DATE(time) AS date,
@@ -27,6 +27,8 @@ COUNT(*) FILTER (WHERE status = '404 NOT FOUND') AS fail,
 COUNT(*) AS total
 FROM log GROUP BY date;`
 (Creates the required view)
+
+`\q` (Exits PSQL)
 
 You can now run the program.
 
