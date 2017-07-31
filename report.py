@@ -67,7 +67,7 @@ def print_top_authors():
         '''SELECT authors.name, COUNT(*) AS views
         FROM authors
         JOIN(SELECT articles.title, articles.author FROM articles
-             JOIN log ON log.path LIKE CONCAT('/article/', articles.slug))
+             JOIN log ON log.path=CONCAT('/article/', articles.slug))
         AS popular
         ON authors.id=popular.author
         GROUP BY name
