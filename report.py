@@ -89,7 +89,7 @@ def print_top_error_days():
     )
     print("\nDays With HTTP Error Rates Over 1%: \n")
     for date, rate in output:
-        print("\"{}\" -- {}%".format(date, rate))
+        print("\"{0:%B %d, %Y}\" -- {1:}%".format(date, rate))
 
 
 if __name__ == '__main__':
