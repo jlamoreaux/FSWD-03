@@ -11,6 +11,6 @@ Rudolf von Treppenwitz -- 423457 views
 Anonymous Contributor -- 170098 views
 Markoff Chaney -- 84557 views
 
-Day With Highest Error Rate:
+Days With HTTP Error Rates Over 1%:
 
-2016-07-17 -- 2.00%
+"July 17, 2016" -- 2.26%
