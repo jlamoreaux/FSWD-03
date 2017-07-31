@@ -11,9 +11,11 @@ The script accesses three different tables to return the data listed below under
 
 ## Setup
 
-The file [newsdata.sql](https://github.com/jlamoreaux/FSWD-03/blob/master/newsdata.zip) can be found in this repository and must be imported to PostgreSQl
+The file [newsdata.zip](https://github.com/jlamoreaux/FSWD-03/blob/master/newsdata.zip) can be found in this repository and must be imported to PostgreSQl
 for this program to work.
-Navigate, via your computer's shell, to the folder where _newsdata.sql_ has been downloaded and execute the following command:
+
+First, navigate, via your computer's shell, to the folder where _newsdata.zip_ has been downloaded and execute the following commands:
+`unzip newsdata.zip`
 `psql -d news -f newsdata.sql`
 It may take a minute or two to complete the import.
 Once the database has been loaded, you need to create a view, `errors`, for the python script to access.
@@ -21,11 +23,11 @@ You can do so by executing the following:
 
 `$ psql news` (Opens PostgreSQL and connects to the database)
 
-`=>CREATE VIEW "errors" AS
+```=>CREATE VIEW "errors" AS
 SELECT DATE(time) AS date,
 COUNT(*) FILTER (WHERE status = '404 NOT FOUND') AS fail, 
 COUNT(*) AS total
-FROM log GROUP BY date;`
+FROM log GROUP BY date;```
 (Creates the required view)
 
 `\q` (Exits PSQL)
