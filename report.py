@@ -83,8 +83,8 @@ def print_top_error_days():
     requests lead to errors."""
 
     output = get_query_results(
-        '''SELECT date, ROUND(fail*100/total, 2) AS percentage
-        FROM errors WHERE (fail*100/total) > 1
+        '''SELECT date, ROUND(fail*100.0/total, 2) AS percentage
+        FROM errors WHERE (fail*100.0/total) > 1
         ORDER BY percentage DESC;'''
     )
     print("\nDays With HTTP Error Rates Over 1%: \n")
