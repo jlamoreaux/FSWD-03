@@ -23,11 +23,13 @@ You can do so by executing the following:
 
 `$ psql news` (Opens PostgreSQL and connects to the database)
 
-```=>CREATE VIEW "errors" AS
+```
+=>CREATE VIEW "errors" AS
 SELECT DATE(time) AS date,
 COUNT(*) FILTER (WHERE status = '404 NOT FOUND') AS fail, 
 COUNT(*) AS total
-FROM log GROUP BY date;```
+FROM log GROUP BY date;
+```
 (Creates the required view)
 
 `\q` (Exits PSQL)
